@@ -1,0 +1,156 @@
+<%-- 
+    Document   : Reg
+    Created on : 8 Jun, 2016, 11:45:50 AM
+    Author     : anuja
+--%>
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+<link href="Layout.css" rel='stylesheet' type='text/css'/>
+<link href="Menu.css" rel='stylesheet' type='text/css'/>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Register</title>
+<script type="text/javascript">
+ function validate()
+ {
+     var Fname=document.RegisterForm.Firstname.value;
+     var Lname=document.RegisterForm.Lastname.value;
+     var email=document.RegisterForm.Email.value;
+     var Uname=document.RegisterForm.UserName.value;
+     var pass=document.RegisterForm.Password.value;
+     var cpass=document.RegisterForm.ConfirmPass.value;
+     
+     var reg_fname=new RegExp("^[a-zA-Z]+$","g");
+     var reg_lname=new RegExp("^[a-zA-Z]+$","g");
+     var reg_uname=new RegExp("^[a-zA-Z]+$","g");
+     var reg_email=new RegExp("^[a-zA-Z0-9.-_%]+@[a-zA-Z0-9.-]+\.[a-z]{2,3}$");
+     
+    
+     if((email!=null)&&(!email.match(reg_email)))
+     {
+         alert("enter valid email id");
+		 return false;
+     }
+     if(pass.length<4)
+     {
+         document.getElementById("demo5").innerHTML="weak";
+         return false;
+     }
+      
+     
+     
+     if(cpass!=pass)
+     {
+         document.getElementById("demo6").innerHTML="Doesn't match";
+         return false;
+     } 
+     return true;
+ }
+</script>
+</head>
+
+<body>
+
+<div id="Holder">
+<div id="Header"></div>
+<div id="NavBar">
+	<nav>
+		<ul>
+			<li><a href="#">Login</a></li>
+			<li><a href="#">Register</a></li>
+			<li><a href="#">Forgot Password</a></li>
+		</ul>
+	</nav>
+</div>
+<div id="Content">
+	<div id="PageHeading">
+	  <h1>School Registration Form</h1>
+	</div>
+	<div id="ContentRight">
+            <form  name="RegisterForm" method="POST" action="RegInsert.jsp" onsubmit="return validate()">
+	  <table width="455" border="0" align="center" cellpadding="10">
+        <tr>
+          <td width="449">
+		  <table width="337" border="0">
+              <tr>
+			       <td><label for="textfield"></label>
+                    <p>School Name</p>
+                  <p>
+                      <input name="sname" type="text" class="StyleTextField" id="sname" required/>
+                  </p>                </td>
+              </tr>
+          </table>
+          </td>
+        </tr>
+		<tr>
+		 <td>
+		    <p>Area:</p>
+			
+		    <p>
+		      <label for="textfield"></label>
+		      <input name="area" type="text" class="StyleTextField" id="area" required/>
+		    </p>
+        </td>
+		</tr>
+        <tr>
+		 <td>
+		    <p>Email ID:</p>
+			
+		    <p>
+		      <label for="textfield"></label>
+		      <input name="email" type="text"  class="StyleTextField" id="email" required/>
+		    </p>
+        </td>
+		</tr>
+        <tr>
+                <td><label for="textfield"></label>
+                    <p>Contact Number: </p>
+                  <p>
+                      <input name="con_num" type="text" class="StyleTextField" id="con_num" required/>
+                  </p>                </td>
+               
+        </tr>
+        <tr>
+        
+                <td><label for="textfield"></label>
+                    <p>User Name: </p>
+                  <p>
+                      <input name="uname" type="text" class="StyleTextField" id="uname" required/>
+                  </p>                </td>
+               
+   
+		  
+        </tr>
+		 <tr>
+            <td><label for="textfield"></label>
+                    <p>Password </p>
+                  <p>
+                      <input name="pass" type="password"  class="StyleTextField" id="pass" required/>
+                  </p>                </td>
+                
+        </tr>	
+		<tr>
+		 <td>
+		    <p>Confirm Password</p>
+			
+		    <p>
+		      <label for="textfield"></label>
+		      <input name="cpass" type="password" class="StyleTextField"  id="cpass" required/>
+		    </p></td>
+		</tr>
+		
+        <tr>
+          <td><label for="Submit"></label>
+              <input type="submit" name="Submit" value="Register" id="Submit" required/></td>
+        </tr>
+      </table>
+	  
+	</form>
+	</div>
+</div>
+</div>
+</body>
+</html>
