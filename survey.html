@@ -17,17 +17,19 @@
      var Uname=document.RegisterForm.UserName.value;
      var pass=document.RegisterForm.Password.value;
      var cpass=document.RegisterForm.ConfirmPass.value;
+	 var income=document.RegisterForm.Income.value;
      
      var reg_fname=new RegExp("^[a-zA-Z]+$","g");
      var reg_lname=new RegExp("^[a-zA-Z]+$","g");
      var reg_uname=new RegExp("^[a-zA-Z]+$","g");
      var reg_email=new RegExp("^[a-zA-Z0-9.-_%]+@[a-zA-Z0-9.-]+\.[a-z]{2,3}$");
-     
+     var reg_income=new RegExp("[0-9]+$");
+	 
      
      
      if(!Fname.match(reg_fname))
      {
-        document.getElementById("demo1").innerHTML="Enter only alphabets!!" ;
+     	 alert("Enter alphabets only!!");
         return false;
      }
      if(!Lname.match(reg_lname))
@@ -40,24 +42,15 @@
         document.getElementById("demo4").innerHTML="Enter only alphabets!!" ;
         return false;
      }
-     if((email!=null)&&(!email.match(reg_email)))
-     {
-         document.getElementById("demo3").innerHTML="invalid email address";return false;
-     }
-     if(pass.length<4)
-     {
-         document.getElementById("demo5").innerHTML="weak";
-         return false;
-     }
-      
+     
+     if(!income.match(reg_income))
+	 {
+		 alert("enter numeric values");
+		 return false;
+	 }
      
      
-     if(cpass!=pass)
-     {
-         document.getElementById("demo6").innerHTML="Doesn't match";
-         return false;
-     } 
-     return true;
+     
  }
 </script>
 </head>
