@@ -16,19 +16,24 @@
 <script type="text/javascript">
  function validate()
  {
-     var Fname=document.RegisterForm.Firstname.value;
-     var Lname=document.RegisterForm.Lastname.value;
-     var email=document.RegisterForm.Email.value;
-     var Uname=document.RegisterForm.UserName.value;
-     var pass=document.RegisterForm.Password.value;
-     var cpass=document.RegisterForm.ConfirmPass.value;
+     var sname=document.RegisterForm.sname.value;
+     var email=document.RegisterForm.email.value;
+     var uname=document.RegisterForm.uname.value;
+     var conum=document.RegisterForm.conum.value;
+	  var pass=document.RegisterForm.pass.value;
+     var cpass=document.RegisterForm.cpass.value;
      
      var reg_fname=new RegExp("^[a-zA-Z]+$","g");
      var reg_lname=new RegExp("^[a-zA-Z]+$","g");
      var reg_uname=new RegExp("^[a-zA-Z]+$","g");
      var reg_email=new RegExp("^[a-zA-Z0-9.-_%]+@[a-zA-Z0-9.-]+\.[a-z]{2,3}$");
+	 var reg_conum=new RegExp("[789]\d{9}");
      
-    
+      if(!sname.match(reg_fname))
+     {
+        document.getElementById("demo1").innerHTML="Enter only alphabets!!" ;
+        return false;
+     }
      if((email!=null)&&(!email.match(reg_email)))
      {
          alert("enter valid email id");
@@ -36,17 +41,26 @@
      }
      if(pass.length<4)
      {
-         document.getElementById("demo5").innerHTML="weak";
+		alert("Enter a password of length more than 4!!");
          return false;
      }
-      
-     
-     
-     if(cpass!=pass)
-     {
-         document.getElementById("demo6").innerHTML="Doesn't match";
-         return false;
-     } 
+	 if ((conum.length!=10)&&(!conum.match(reg_conum))){  
+  			alert("Enter a valid Contact Number");  
+  			return false;  
+	}
+	else{  
+	  		return true;  
+  	}  
+     if(pass==cpass)
+	 {
+		 return true;
+	 }
+	 else
+	 {
+		alert("The password must be same!!");
+		return false;
+	 }
+    
      return true;
  }
 </script>
@@ -73,17 +87,12 @@
             <form  name="RegisterForm" method="POST" action="RegInsert.jsp" onsubmit="return validate()">
 	  <table width="455" border="0" align="center" cellpadding="10">
         <tr>
-          <td width="449">
-		  <table width="337" border="0">
-              <tr>
 			       <td><label for="textfield"></label>
                     <p>School Name</p>
                   <p>
                       <input name="sname" type="text" class="StyleTextField" id="sname" required/>
                   </p>                </td>
-              </tr>
-          </table>
-          </td>
+            
         </tr>
 		<tr>
 		 <td>
@@ -109,7 +118,7 @@
                 <td><label for="textfield"></label>
                     <p>Contact Number: </p>
                   <p>
-                      <input name="con_num" type="text" class="StyleTextField" id="con_num" required/>
+                      <input name="conum" type="text" class="StyleTextField" id="conum" required/>
                   </p>                </td>
                
         </tr>

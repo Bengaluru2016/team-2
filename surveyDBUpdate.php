@@ -1,6 +1,6 @@
 <?php
 
-$con = mysql_connect("localhost","root","password");
+$con = mysql_connect("localhost","infinity","infinity");
 if (!$con)
 {
 	echo "fail";
@@ -20,7 +20,7 @@ else
 	}
 	else
 	{
-		header('Location: http://10.242.6.72/samridhi/survy.html');
+		header('Location: http://localhost/samridhi/survy.html');
 		exit();
     }
 	mysql_close($con);
