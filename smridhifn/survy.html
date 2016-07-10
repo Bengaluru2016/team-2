@@ -8,97 +8,72 @@
 <link href="Menu.css" rel='stylesheet' type='text/css'/>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 <title>Register</title>
-<?php
-// define variables and set to empty values
-$firstname = $lastname = $gender = $father = $fatherOccupation = $mother = $motherOccupation = $nativeLang = $adharCard = "";
-$firstnameErr = $lastnameErr = $genderErr = $fatherErr = $fatherOccupationErr = $motherErr = $motherOccupationErr = $nativeLangErr = $adharCardErr = "";
-if ($_SERVER["REQUEST_METHOD"] == "POST")
-{
-	$nextPage=true;
-    $firstname = test_input($_POST["Firstname"]);
-	if(strlen($firstname) > 20)
-	{
-		$nextPage = false;
-		$firstnameErr = "Max length should be 20 characters";
-	}
-	
-	$lastname = test_input($_POST["Lastname"]);
-	if(strlen($lastname) > 10)
-	{
-		$nextPage = false;
-		$lastnameErr = "Max length should be 20 characters";
-	}
-	
-	if (empty($_POST["gender"]))
-    {
-		$genderErr = "Gender is required";
-		$nextPage=false;
-    } 
-   else
-    {
-		$gender = test_input($_POST["gender"]);
-    }
-   
-    $father = test_input($_POST["Fathername"]);
-	if(strlen($father) > 20)
-	{
-		$nextPage = false;
-		$fatherErr = "Max length should be 20 characters";
-	}
-	
-	$fatherOccupation = test_input($_POST["Foccupation"]);
-	if(strlen($fatherOccupation) > 50)
-	{
-		$nextPage = false;
-		$fatherOccupationErr = "Max length should be 50 characters";
-	}
-	
-	$mother = test_input($_POST["Mothername"]);
-	if(strlen($mother) > 20)
-	{
-		$nextPage = false;
-		$motherErr = "Max length should be 20 characters";
-	}
-	
-	$motherOccupation = test_input($_POST["Moccupation"]);
-	if(strlen($motherOccupation) > 50)
-	{
-		$nextPage = false;
-		$motherOccupationErr = "Max length should be 50 characters";
-	}
-	
-	$nativeLang = test_input($_POST["Language"]);
-	if(strlen($nativeLang) > 50)
-	{
-		$nextPage = false;
-		$nativeLangErr = "Max length should be 20 characters";
-	}
-	
-	$adharCard = test_input($_POST["Aadhar"]);
-	if(strlen($lastname) > 20 || strlen($lastname) < 20)
-	{
-		$nextPage = false;
-		$adharCardErr = "Length should be 12 characters";
-	}
-	if($nextPage == true)
-	{
-		header('Location: http://localhost/samridhi/serverDBUpdate.php');
-		exit();
-	}
-}
-function test_input($data) {
-   $data = trim($data);
-   $data = stripslashes($data);
-   $data = htmlspecialchars($data);
-   return $data;
-}
-?>
+<script type="text/javascript">
+ function validate()
+ {
+     var Fname=document.RegisterForm.Firstname.value;
+     var Lname=document.RegisterForm.Lastname.value;
+     var email=document.RegisterForm.Email.value;
+     var Uname=document.RegisterForm.UserName.value;
+     var pass=document.RegisterForm.Password.value;
+     var cpass=document.RegisterForm.ConfirmPass.value;
+     
+     var reg_fname=new RegExp("^[a-zA-Z]+$","g");
+     var reg_lname=new RegExp("^[a-zA-Z]+$","g");
+     var reg_uname=new RegExp("^[a-zA-Z]+$","g");
+     var reg_email=new RegExp("^[a-zA-Z0-9.-_%]+@[a-zA-Z0-9.-]+\.[a-z]{2,3}$");
+     
+     if(Fname.length==0 || Lname.length==0 || email.length==0 || Uname.length==0 || pass.length==0)
+     {
+         document.getElementById("demo1").innerHTML="Required" ;
+         document.getElementById("demo2").innerHTML="Required" ;
+         document.getElementById("demo3").innerHTML="Required" ;
+         document.getElementById("demo4").innerHTML="Required" ;
+         document.getElementById("demo5").innerHTML="Required" ;
+         return false;
+     }
+     
+     if(!Fname.match(reg_fname))
+     {
+        document.getElementById("demo1").innerHTML="Enter only alphabets!!" ;
+        return false;
+     }
+     if(!Lname.match(reg_lname))
+     {
+        document.getElementById("demo2").innerHTML="Enter only alphabets!!" ;
+        return false;
+     }
+     if(!Uname.match(reg_uname))
+     {
+        document.getElementById("demo4").innerHTML="Enter only alphabets!!" ;
+        return false;
+     }
+     if((email!=null)&&(!email.match(reg_email)))
+     {
+         document.getElementById("demo3").innerHTML="invalid email address";return false;
+     }
+     if(pass.length<4)
+     {
+         document.getElementById("demo5").innerHTML="weak";
+         return false;
+     }
+      
+     
+     
+     if(cpass!=pass)
+     {
+         document.getElementById("demo6").innerHTML="Doesn't match";
+         return false;
+     } 
+     return true;
+ }
+</script>
 </head>
 
 <body>
 
 	<div id="ContentRight">
-            <form  name="RegisterForm" method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+            <form  name="RegisterForm" method="POST" action="surveyDBUpdate.php" onsubmit="return validate()">
 	  <table width="455" border="0" align="center" cellpadding="10">
         <tr>
           <td width="449">
@@ -108,15 +83,12 @@ function test_input($data) {
                     <p>First Name </p>
                   <p>
                       <input name="Firstname" type="text" class="StyleTextField" id="Firstname" required  />
-                  </p> 
-				  <span class="error"><?php echo $firstnameErr;?> </span>
-                 <label for="label"></label>
+                  </p>                </td>
+                <td><label for="label"></label>
                     <p>Last name </p>
                   <p>
                       <input name="Lastname" type="text" class="StyleTextField" id="Lastname"  required />
-                  </p>     
-					<span class="error"><?php echo $lastnameErr;?> </span>
-				</td>
+                  </p>                </td>
               </tr>
           </table></td>
 		  
@@ -134,13 +106,11 @@ function test_input($data) {
           <td><label for="label3"></label>
               <p>Gender              </p>
               <p>
-                <input value="M" type="radio" name="gender" id="radiobutton1"   />
+                <input value="male" type="radio" name="gender" id="radiobutton1"   />
               Male &nbsp;&nbsp;
-                 <input value="F" type="radio" name="gender" id="radiobutton2" />
-              Female</p></td>
-			  <td>
-			  
-              <span class="error"><?php echo $genderErr;?> </span>
+                 <input value="female" type="radio" name="gender" id="radiobutton2" />
+              Female</p>
+              
            
           </td>
 		 <tr>
@@ -151,17 +121,12 @@ function test_input($data) {
                     <p>Father Name </p>
                   <p>
                       <input name="Fathername" type="text" class="StyleTextField" id="Fathername" required />
-                  </p>
-				  <span class="error"><?php echo $fatherErr;?> </span>
-				</td>
+                  </p>                </td>
                 <td><label for="label"></label>
                     <p>Occupation </p>
                   <p>
                       <input name="Foccupation" type="text" class="StyleTextField" id="Occupation" required />
-                  </p></td>
-				  <td>
-				 <span class="error"><?php echo $fatherOccupationErr;?> </span> 
-				 </td>
+                  </p>                </td>
               </tr>
           </table></td>
 		  
@@ -174,16 +139,12 @@ function test_input($data) {
                     <p>Mother Name </p>
                   <p>
                       <input name="Mothername" type="text" class="StyleTextField" id="Mothername" required />
-                  </p>
-				  <span class="error"><?php echo $motherErr;?> </span>
-				 </td>
+                  </p>                </td>
                 <td><label for="label"></label>
                     <p>Occupation </p>
                   <p>
                       <input name="Moccupation" type="text" class="StyleTextField" id="Occupation" required />
-                  </p>
-				  <span class="error"><?php echo $motherOccupationErr;?> </span>
-				 </td>
+                  </p>                </td>
               </tr>
           </table></td>
 		  
@@ -199,9 +160,7 @@ function test_input($data) {
 		    <p>
 		      <label for="textfield"></label>
 		      <input name="Language" type="text" class="StyleTextField" id="Lang" required />
-		    </p>
-			<span class="error"><?php echo $nativeLangErr;?> </span>
-			</td>
+		    </p></td>
 		</tr>
 		
 		<tr>
@@ -219,16 +178,14 @@ function test_input($data) {
 			
 		    <p>
 		      <label for="textfield"></label>
-		      <input name="Aadhar" type="text" class="StyleTextField" id="Aadhar" maxlength = 12/>
-		    </p>
-			<span class="error"><?php echo $adharCardErr;?> </span>
-			</td>
+		      <input name="Aadhar" type="text" class="StyleTextField" id="Aadhar" />
+		    </p></td>
 		</tr>
         <tr>
           <td><label for="label2"></label>
               <p>Location </p>
             <p>
-                <input name="Location" type="text" class="StyleTextField" id="label2" required />
+                <input name="Location" type="Email Address" class="StyleTextField" id="label2" required />
             </p>
            </td>
         </tr>
