@@ -9,7 +9,7 @@ window.onload = function () {
    var ee =  <?php 
      
       $conn = new mysqli("localhost","infinity","infinity","smridhi");
-      $sql = "select count(id) as dd from student;";
+      $sql = "select count(id) as dd from stud;";
       $res = $conn->query($sql);
       $ro = $res->fetch_assoc();
       
@@ -18,7 +18,7 @@ window.onload = function () {
     ?>;
     
     var ff = <?php  
-            $sql = "select count(id) as dd from student where fl=1;";
+            $sql = "select count(id) as dd from stud where fl=1;";
       $res = $conn->query($sql);
       $ro = $res->fetch_assoc();
       

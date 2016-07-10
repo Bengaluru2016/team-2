@@ -73,7 +73,7 @@
 <body>
 
 	<div id="ContentRight">
-            <form  name="RegisterForm" method="POST" action="adddb.php" onsubmit="return validate()">
+            <form  name="RegisterForm" method="POST" action="surveyDBUpdate.php" onsubmit="return validate()">
 	  <table width="455" border="0" align="center" cellpadding="10">
         <tr>
           <td width="449">
@@ -82,12 +82,12 @@
 			       <td><label for="textfield"></label>
                     <p>First Name </p>
                   <p>
-                      <input name="fn" type="text" class="StyleTextField" id="Firstname" required  />
+                      <input name="Firstname" type="text" class="StyleTextField" id="Firstname" required  />
                   </p>                </td>
                 <td><label for="label"></label>
                     <p>Last name </p>
                   <p>
-                      <input name="ln" type="text" class="StyleTextField" id="Lastname"  required />
+                      <input name="Lastname" type="text" class="StyleTextField" id="Lastname"  required />
                   </p>                </td>
               </tr>
           </table></td>
@@ -99,16 +99,16 @@
 			
 		    <p>
 		      <label for="textfield"></label>
-		      <input name="dob" type="date" class="StyleTextField" id="DOB" required />
+		      <input name="DOB" type="date" class="StyleTextField" id="DOB" required />
 		    </p></td>
 		</tr>
 		<tr>
           <td><label for="label3"></label>
               <p>Gender              </p>
               <p>
-                <input value="male" type="radio" name="gd" id="radiobutton1"   />
+                <input value="male" type="radio" name="gender" id="radiobutton1"   />
               Male &nbsp;&nbsp;
-                 <input value="female" type="radio" name="gd" id="radiobutton2" />
+                 <input value="female" type="radio" name="gender" id="radiobutton2" />
               Female</p>
               
            
@@ -120,12 +120,12 @@
                 <td><label for="textfield"></label>
                     <p>Father Name </p>
                   <p>
-                      <input name="fn" type="text" class="StyleTextField" id="Fathername" required />
+                      <input name="Fathername" type="text" class="StyleTextField" id="Fathername" required />
                   </p>                </td>
                 <td><label for="label"></label>
                     <p>Occupation </p>
                   <p>
-                      <input name="fo" type="text" class="StyleTextField" id="Occupation" required />
+                      <input name="Foccupation" type="text" class="StyleTextField" id="Occupation" required />
                   </p>                </td>
               </tr>
           </table></td>
@@ -138,12 +138,12 @@
                 <td><label for="textfield"></label>
                     <p>Mother Name </p>
                   <p>
-                      <input name="mn" type="text" class="StyleTextField" id="Mothername" required />
+                      <input name="Mothername" type="text" class="StyleTextField" id="Mothername" required />
                   </p>                </td>
                 <td><label for="label"></label>
                     <p>Occupation </p>
                   <p>
-                      <input name="mo" type="text" class="StyleTextField" id="Occupation" required />
+                      <input name="Moccupation" type="text" class="StyleTextField" id="Occupation" required />
                   </p>                </td>
               </tr>
           </table></td>
@@ -159,7 +159,7 @@
 			
 		    <p>
 		      <label for="textfield"></label>
-		      <input name="lg" type="text" class="StyleTextField" id="Lang" required />
+		      <input name="Language" type="text" class="StyleTextField" id="Lang" required />
 		    </p></td>
 		</tr>
 		
@@ -169,7 +169,7 @@
 			
 		    <p>
 		      <label for="textfield"></label>
-		      <input name="ic" type="text" class="StyleTextField" id="Income"  />
+		      <input name="Income" type="text" class="StyleTextField" id="Income"  />
 		    </p></td>
 		</tr>
 		<tr>
@@ -178,14 +178,14 @@
 			
 		    <p>
 		      <label for="textfield"></label>
-		      <input name="ad" type="text" class="StyleTextField" id="Aadhar" />
+		      <input name="Aadhar" type="text" class="StyleTextField" id="Aadhar" />
 		    </p></td>
 		</tr>
         <tr>
           <td><label for="label2"></label>
               <p>Location </p>
             <p>
-                <input name="lc" type="Email Address" class="StyleTextField" id="label2" required />
+                <input name="Location" type="Email Address" class="StyleTextField" id="label2" required />
             </p>
            </td>
         </tr>
@@ -194,7 +194,7 @@
           <td><label for="label3"></label>
               <p>How long have you been living here (in terms of months) ?</p>
             <p>
-                <input name="lv" type="text" class="StyleTextField" id="living" />
+                <input name="Living" type="text" class="StyleTextField" id="living" />
             </p>
            
           </td>
@@ -219,7 +219,7 @@
            
               <p>
                 <label for="textfield"></label>
-                <input name="cn" type="text" class="StyleTextField" id="Contact" />
+                <input name="Contact" type="text" class="StyleTextField" id="Contact" />
             </p></td>
 			
         </tr>
@@ -230,7 +230,7 @@
            
               <p>
                 <label for="textfield"></label>
-                <input name="acn" type="text" class="StyleTextField" id="AltContact" />
+                <input name="AltContact" type="text" class="StyleTextField" id="AltContact" />
             </p></td>
        
         </tr>

@@ -9,7 +9,7 @@ window.onload = function () {
    var ee =  <?php 
      
       $conn = new mysqli("localhost","infinity","infinity","smridhi");
-      $sql = "select count(id) as dd from student where fl=1 and cat=2;";
+      $sql = "select count(id) as dd from stud where fl=1 and cat=2;";
       $res = $conn->query($sql);
       $ro = $res->fetch_assoc();
       
@@ -19,7 +19,7 @@ window.onload = function () {
     
     
     var gg = <?php  
-            $sql = "select count(id) as dd from student where fl=1 and cat=1;";
+            $sql = "select count(id) as dd from stud where fl=1 and cat=1;";
       $res = $conn->query($sql);
       $ro = $res->fetch_assoc();
       
@@ -30,7 +30,7 @@ window.onload = function () {
     
     
     var ff = <?php  
-            $sql = "select count(id) as dd from student where fl=0;";
+            $sql = "select count(id) as dd from stud where fl=0;";
       $res = $conn->query($sql);
       $ro = $res->fetch_assoc();
       
