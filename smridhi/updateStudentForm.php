@@ -1,65 +1,39 @@
 <html>
 	<body>
 		<form name="ValidateForm" method="POST" action="validate.php">
-            
-             <?php
-         
-          $conn = new mysqli("localhost","infinity","infinity","smridhi");
-          $sql = "select* from survey;";
-          $res = $conn->query($sql);$rg=0;
+			<?php
+			$conn = new mysqli("localhost","root","password","samridhi");
+			$sql = "select* from survey where flag = 0";
+			$res = $conn->query($sql);
           
-          if($res->num_rows > 0)
-          {
-              ?>
-              <form name="ValidateForm" method="POST" action="validate.php">
-           
-              <?php
-                 while($ro=$res->fetch_assoc())
-                 {
-                      if($ro["flag"] == 1)
-                      continue;
+			if($res->num_rows > 0)
+			{
+			?>
+            <form name="ValidateForm" method="POST" action="validate.php">
+            <?php
+                while($row=$res->fetch_assoc())
+                {               
+                    $id = $row["id"];
+            ?>
+            <input type="hidden" name=<?php echo $id; ?> value="no">
+            <input type="checkbox" name=<?php echo $id; ?> value="yes" >
                       
-                      $rg=1;
-                      $we = $ro["id"];
+            <?php
                       
-                      ?>
-                      <input type="hidden" name=<?php echo $we; ?> value="no">
-                      <input type="checkbox" name=<?php echo $we; ?> value="yes" >
+                    echo $row["first_name"]." ".$row["last_name"];
+					echo "<br>";
                       
-                      <?php
-                      
-                      echo $ro["first_name"]." ".$ro["last_name"];echo "<br>";
-                      
-                 }
-                 
-                 if($rg == 0)
-                 {
-                      echo "Few descripancies are there..";
-                 }
-                 
-                 else
-                 {
-                 
-                 ?>
-                <br>
-                 <input type="submit">
-                 </form>
-                 <?php
-                 }
-          }
-          else
-          {
-               echo "No new surveys have arrived";
-          }
-          
-       
-         ?>
-            
-            
-            
-            
-            
-	
-	
+                }
+            ?>
+			<br>
+			<input type="submit">
+		</form>
+		<?php
+			}
+			else
+			{
+				echo "No new surveys have arrived";
+			}
+		?>
 	</body>
 </html>

@@ -1,7 +1,5 @@
 <?php
-
-$conn = new mysqli("localhost","infinity","infinity","smridhi");
-
+$conn = new mysqli("localhost","root","password","smridhi");
 if (!$conn)
 {
 	 echo "not connected to database";
@@ -11,22 +9,19 @@ else
 	
 	$sql="SELECT * FROM survey";
 	$res = $conn->query($sql);
-
 	$compare="SELECT * FROM student";
 	while($row=$res->fetch_assoc())
 	{
         if($_POST[$row["id"]] == "no")
          continue;
-        $fg = $row["id"];
-        $sql = "update survey set flag=1 where id='$fg';";
-        $re4 = $conn->query($sql);
+        $id = $row["id"];
+        $sql = "update survey set flag=1 where id='$id';";
+        $query = $conn->query($sql);
         
-        
-         
 		$flag = false;
 		if( $row["adhar_card_number"] != '' )
 		{
-			$res2 = $conn->query($compare);
+			$query = $conn->query($compare);
 			while($compareRow = $res2->fetch_assoc())
 			{
 				if( strcmp($compareRow["adhar_card_number"], $row["adhar_card_number"]) == 0)
@@ -34,10 +29,10 @@ else
 					$id = $row["id"];
 					
 					$duplicate = "INSERT INTO survey_not_updated SELECT * FROM survey WHERE id = '$id'";
-					$res3 = $conn->query($duplicate);
+					$query = $conn->query($duplicate);
 					
 					$delete = "DELETE FROM survey WHERE id = '$id'";
-					$res4 = $conn->query($delete);
+					$query = $conn->query($delete);
 					
 					$flag = true;
 					break;
@@ -46,6 +41,7 @@ else
 		}
 		if($flag == true)
 			break;
+		
 		$res2 = $conn->query($compare);
 		while($compareRow = $res2->fetch_assoc())
 		{
@@ -61,11 +57,11 @@ else
 							$id = $row["id"];
 							
 							$duplicate = "INSERT INTO survey_not_updated SELECT * FROM survey WHERE id = '$id'";
-							$res4 = $conn->query($duplicate);
+							$query = $conn->query($duplicate);
 							
 				
 							$delete = "DELETE FROM survey WHERE id = '$id'";
-							$res5 = $conn->query($delete);
+							$query = $conn->query($delete);
 							break;
 						}
 						else
@@ -74,7 +70,7 @@ else
 							$registration_id = $compareRow["registration_id"];
 						
 							$mapping = "INSERT INTO mapping VALUES('$id', '$registration_id')";
-							$res7 = $conn->query($mapping);
+							$query = $conn->query($mapping);
 							$flag = true;
 							break;
 						}
@@ -88,7 +84,7 @@ else
 							$registration_id = $compareRow["registration_id"];
 						
 							$mapping = "INSERT INTO mapping VALUES('$id', '$registration_id')";
-							$res7 = $conn->query($mapping);
+							$query = $conn->query($mapping);
 							
 							$flag = true;
 							break;
