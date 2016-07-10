@@ -28,7 +28,7 @@
           <!-- put class="selected" in the li tag for the selected page - to highlight which page you're on -->
           <li class="selected"><a href="frnt.php">Home</a></li>
           
-          <li><a href="contact.html" target="_blank">Contact Us</a></li>
+          <li><a href="contact.php" >Contact Us</a></li>
         </ul>
       </div>
     </div>
