@@ -8,12 +8,97 @@
 <link href="Menu.css" rel='stylesheet' type='text/css'/>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 <title>Register</title>
+<<<<<<< HEAD
+=======
+<?php
+// define variables and set to empty values
+$firstname = $lastname = $gender = $father = $fatherOccupation = $mother = $motherOccupation = $nativeLang = $adharCard = "";
+$firstnameErr = $lastnameErr = $genderErr = $fatherErr = $fatherOccupationErr = $motherErr = $motherOccupationErr = $nativeLangErr = $adharCardErr = "";
+if ($_SERVER["REQUEST_METHOD"] == "POST")
+{
+	$nextPage=true;
+    $firstname = test_input($_POST["Firstname"]);
+	if(strlen($firstname) > 20)
+	{
+		$nextPage = false;
+		$firstnameErr = "Max length should be 20 characters"
+	}
+	
+	$lastname = test_input($_POST["Lastname"]);
+	if(strlen($lastname) > 10)
+	{
+		$nextPage = false;
+		$lastnameErr = "Max length should be 20 characters"
+	}
+	
+	if (empty($_POST["gender"]))
+    {
+		$genderErr = "Gender is required";
+		$nextPage=false;
+    } 
+   else
+    {
+		$gender = test_input($_POST["gender"]);
+    }
+   
+    $father = test_input($_POST["Fathername"]);
+	if(strlen($father) > 20)
+	{
+		$nextPage = false;
+		$fatherErr = "Max length should be 20 characters"
+	}
+	
+	$fatherOccupation = test_input($_POST["Foccupation"]);
+	if(strlen($fatherOccupation) > 50)
+	{
+		$nextPage = false;
+		$fatherOccupationErr = "Max length should be 50 characters"
+	}
+	
+	$mother = test_input($_POST["Mothername"]);
+	if(strlen($mother) > 20)
+	{
+		$nextPage = false;
+		$motherErr = "Max length should be 20 characters"
+	}
+	
+	$motherOccupation = test_input($_POST["Moccupation"]);
+	if(strlen($motherOccupation) > 20)
+	{
+		$nextPage = false;
+		$motherOccupationErr = "Max length should be 20 characters"
+	}
+	
+	$nativeLang = test_input($_POST["Lang"]);
+	if(strlen($nativeLang) > 50)
+	{
+		$nextPage = false;
+		$nativeLangErr = "Max length should be 20 characters"
+	}
+	
+	$adharCard = test_input($_POST["Aadhar"]);
+	if(strlen($lastname) > 20 || strlen($lastname) < 20)
+	{
+		$nextPage = false;
+		$adharCardErr = "Length should be 12 characters"
+	}
+	
+	
+}
+function test_input($data) {
+   $data = trim($data);
+   $data = stripslashes($data);
+   $data = htmlspecialchars($data);
+   return $data;
+}
+?>
+>>>>>>> origin/master
 </head>
 
 <body>
 
 	<div id="ContentRight">
-            <form  name="RegisterForm" method="POST" action="surveyDBUpdate.php" onsubmit="return validate()">
+            <form  name="RegisterForm" method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
 	  <table width="455" border="0" align="center" cellpadding="10">
         <tr>
           <td width="449">
@@ -118,14 +203,14 @@
 			
 		    <p>
 		      <label for="textfield"></label>
-		      <input name="Aadhar" type="text" class="StyleTextField" id="Aadhar" />
+		      <input name="Aadhar" type="text" class="StyleTextField" id="Aadhar" maxlength = 12/>
 		    </p></td>
 		</tr>
         <tr>
           <td><label for="label2"></label>
               <p>Location </p>
             <p>
-                <input name="Location" type="Email Address" class="StyleTextField" id="label2" required />
+                <input name="Location" type="text" class="StyleTextField" id="label2" required />
             </p>
            </td>
         </tr>

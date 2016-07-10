@@ -27,11 +27,11 @@
      var reg_lname=new RegExp("^[a-zA-Z]+$","g");
      var reg_uname=new RegExp("^[a-zA-Z]+$","g");
      var reg_email=new RegExp("^[a-zA-Z0-9.-_%]+@[a-zA-Z0-9.-]+\.[a-z]{2,3}$");
-	 var reg_conum=new RegExp("[789]\d{9}");
+	 var reg_conum=new RegExp("^[^a-zA-Z]+$","g");
      
       if(!sname.match(reg_fname))
      {
-        document.getElementById("demo1").innerHTML="Enter only alphabets!!" ;
+		alert("enter valid School Name");
         return false;
      }
      if((email!=null)&&(!email.match(reg_email)))
@@ -44,14 +44,14 @@
 		alert("Enter a password of length more than 4!!");
          return false;
      }
-	 if ((conum.length!=10)&&(!conum.match(reg_conum))){  
+	 if ((conum.length!=10)&&(!conum.match("^\d{10}"))){  
   			alert("Enter a valid Contact Number");  
   			return false;  
 	}
 	else{  
 	  		return true;  
   	}  
-     if(pass==cpass)
+     if(pass.equals(cpass))
 	 {
 		 return true;
 	 }
@@ -118,7 +118,8 @@
                 <td><label for="textfield"></label>
                     <p>Contact Number: </p>
                   <p>
-                      <input name="conum" type="text" class="StyleTextField" id="conum" required/>
+                      <input name="conum" type="text" class="StyleTextField" id="conum" pattern="^[789].\d{9}" required/>
+                     
                   </p>                </td>
                
         </tr>
@@ -147,7 +148,7 @@
 			
 		    <p>
 		      <label for="textfield"></label>
-		      <input name="cpass" type="password" class="StyleTextField"  id="cpass" required/>
+		      <input name="cpass" type="password" class="StyleTextField"  id="cpass"pass required/>
 		    </p></td>
 		</tr>
 		
