@@ -8,51 +8,6 @@
 <link href="Menu.css" rel='stylesheet' type='text/css'/>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 <title>Register</title>
-<script type="text/javascript">
- function validate()
- {
-     var Fname=document.RegisterForm.Firstname.value;
-     var Lname=document.RegisterForm.Lastname.value;
-     var email=document.RegisterForm.Email.value;
-     var Uname=document.RegisterForm.UserName.value;
-     var pass=document.RegisterForm.Password.value;
-     var cpass=document.RegisterForm.ConfirmPass.value;
-	 var income=document.RegisterForm.Income.value;
-     
-     var reg_fname=new RegExp("^[a-zA-Z]+$","g");
-     var reg_lname=new RegExp("^[a-zA-Z]+$","g");
-     var reg_uname=new RegExp("^[a-zA-Z]+$","g");
-     var reg_email=new RegExp("^[a-zA-Z0-9.-_%]+@[a-zA-Z0-9.-]+\.[a-z]{2,3}$");
-     var reg_income=new RegExp("[0-9]+$");
-	 
-     
-     
-     if(!Fname.match(reg_fname))
-     {
-     	 alert("Enter alphabets only!!");
-        return false;
-     }
-     if(!Lname.match(reg_lname))
-     {
-        document.getElementById("demo2").innerHTML="Enter only alphabets!!" ;
-        return false;
-     }
-     if(!Uname.match(reg_uname))
-     {
-        document.getElementById("demo4").innerHTML="Enter only alphabets!!" ;
-        return false;
-     }
-     
-     if(!income.match(reg_income))
-	 {
-		 alert("enter numeric values");
-		 return false;
-	 }
-     
-     
-     
- }
-</script>
 </head>
 
 <body>
